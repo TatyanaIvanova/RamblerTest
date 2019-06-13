@@ -16,7 +16,7 @@ public class RamblerTests {
 	
 	@Before
 	public void setUp() throws Exception {
-		// Устанавливаем путь к WebDriver
+		// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїСѓС‚СЊ Рє WebDriver
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		
 		driver = new ChromeDriver();
@@ -29,7 +29,7 @@ public class RamblerTests {
 	}
 	
 	@Test
-	// Проверка ввода пустого значения в поле «Почтовый ящик»
+	// РџСЂРѕРІРµСЂРєР° РІРІРѕРґР° РїСѓСЃС‚РѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РІ РїРѕР»Рµ В«РџРѕС‡С‚РѕРІС‹Р№ СЏС‰РёРєВ»
 	public void emailLoginEmty() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
@@ -41,14 +41,14 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Логин должен быть от 3 до 32 символов']/.."));
+		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РѕС‚ 3 РґРѕ 32 СЃРёРјРІРѕР»РѕРІ']/.."));
 		
 		Assert.assertNotNull(emailErrorElement);
 		Thread.sleep(1000);
 	}
 	
 	@Test
-	// Проверка ввода логина на недопустимую длину: минимальная длина минус 1 символ
+	// РџСЂРѕРІРµСЂРєР° РІРІРѕРґР° Р»РѕРіРёРЅР° РЅР° РЅРµРґРѕРїСѓСЃС‚РёРјСѓСЋ РґР»РёРЅСѓ: РјРёРЅРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° РјРёРЅСѓСЃ 1 СЃРёРјРІРѕР»
 	public void emailLoginLessThanMinLength() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
@@ -60,14 +60,14 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Логин должен быть от 3 до 32 символов']/.."));
+		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РѕС‚ 3 РґРѕ 32 СЃРёРјРІРѕР»РѕРІ']/.."));
 		
 		Assert.assertNotNull(emailErrorElement);
 		Thread.sleep(1000);
 	}
 	
 	@Test
-	// Проверка ввода логина с минимальной длиной
+	// РџСЂРѕРІРµСЂРєР° РІРІРѕРґР° Р»РѕРіРёРЅР° СЃ РјРёРЅРёРјР°Р»СЊРЅРѕР№ РґР»РёРЅРѕР№
 	public void emailLoginMinLenght() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -78,13 +78,13 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		List<WebElement> emailErrorElements = driver.findElements(By.xpath(".//*[text()='Логин должен быть от 3 до 32 символов']/.."));
+		List<WebElement> emailErrorElements = driver.findElements(By.xpath(".//*[text()='Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РѕС‚ 3 РґРѕ 32 СЃРёРјРІРѕР»РѕРІ']/.."));
 
 		Assert.assertTrue(emailErrorElements.size() == 0);
 	}
 	
 	@Test
-	// Проверка ввода логина с максимальной длиной
+	// РџСЂРѕРІРµСЂРєР° РІРІРѕРґР° Р»РѕРіРёРЅР° СЃ РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ РґР»РёРЅРѕР№
 	public void emailLoginMaxLenght() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -95,13 +95,13 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		List<WebElement> emailErrorElements = driver.findElements(By.xpath(".//*[text()='Логин должен быть от 3 до 32 символов']/.."));
+		List<WebElement> emailErrorElements = driver.findElements(By.xpath(".//*[text()='Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РѕС‚ 3 РґРѕ 32 СЃРёРјРІРѕР»РѕРІ']/.."));
 
 		Assert.assertTrue(emailErrorElements.size() == 0);
 	}
 	
 	@Test
-	// Проверка ввода логина на недопустимую длину: максимальная длина плюс 1 символ
+	// РџСЂРѕРІРµСЂРєР° РІРІРѕРґР° Р»РѕРіРёРЅР° РЅР° РЅРµРґРѕРїСѓСЃС‚РёРјСѓСЋ РґР»РёРЅСѓ: РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° РїР»СЋСЃ 1 СЃРёРјРІРѕР»
 	public void emailLoginMaxLenghtPlusOneSymbol() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -112,32 +112,32 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Логин должен быть от 3 до 32 символов']/.."));
+		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РѕС‚ 3 РґРѕ 32 СЃРёРјРІРѕР»РѕРІ']/.."));
 		
 		Assert.assertNotNull(emailErrorElement);
 		Thread.sleep(1000);
 	}
 	
 	@Test
-	// Проверка логина на недопустимые значения (кириллица)
+	// РџСЂРѕРІРµСЂРєР° Р»РѕРіРёРЅР° РЅР° РЅРµРґРѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ (РєРёСЂРёР»Р»РёС†Р°)
 	public void emailLoginMustNotContainCyrillicChars() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
 		WebElement loginField = driver.findElement(By.id("login"));
 		loginField.click();
-		loginField.sendKeys("Иванова");
+		loginField.sendKeys("РРІР°РЅРѕРІР°");
 		
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 
-		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Недопустимый логин']/.."));
+		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ Р»РѕРіРёРЅ']/.."));
 		
 		Assert.assertNotNull(emailErrorElement);
 		Thread.sleep(1000);
 	}
 	
 	@Test
-	// Проверка логина что первый символ не нижнее подчеркивание
+	// РџСЂРѕРІРµСЂРєР° Р»РѕРіРёРЅР° С‡С‚Рѕ РїРµСЂРІС‹Р№ СЃРёРјРІРѕР» РЅРµ РЅРёР¶РЅРµРµ РїРѕРґС‡РµСЂРєРёРІР°РЅРёРµ
 	public void emailLoginMustNotBeginWithAnUnderscore() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -148,14 +148,14 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Недопустимый логин']/.."));
+		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ Р»РѕРіРёРЅ']/.."));
 		
 		Assert.assertNotNull(emailErrorElement);
 		Thread.sleep(1000);
 	}
 		
 	@Test
-	// Проверка логина, последний символ логина не должен быть нижним подчеркиванием
+	// РџСЂРѕРІРµСЂРєР° Р»РѕРіРёРЅР°, РїРѕСЃР»РµРґРЅРёР№ СЃРёРјРІРѕР» Р»РѕРіРёРЅР° РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРёР¶РЅРёРј РїРѕРґС‡РµСЂРєРёРІР°РЅРёРµРј
 	public void emailLoginLastCharNotUnderscore() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -166,14 +166,14 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Недопустимый логин']/.."));
+		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ Р»РѕРіРёРЅ']/.."));
 		
 		Assert.assertNotNull(emailErrorElement);
 		Thread.sleep(1000);
 	}
 		
 	@Test
-	// Проверка логина, логин не должен содержать символ @
+	// РџСЂРѕРІРµСЂРєР° Р»РѕРіРёРЅР°, Р»РѕРіРёРЅ РЅРµ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ СЃРёРјРІРѕР» @
 	public void emailLoginMustNotContainDogChar() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -184,14 +184,14 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Недопустимый логин']/.."));
+		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ Р»РѕРіРёРЅ']/.."));
 		
 		Assert.assertNotNull(emailErrorElement);
 		Thread.sleep(1000);
 	}
 		
 	@Test
-	// Проверка логина, логин не должен содержать 2 одинаковые подряд идущие спец символы
+	// РџСЂРѕРІРµСЂРєР° Р»РѕРіРёРЅР°, Р»РѕРіРёРЅ РЅРµ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ 2 РѕРґРёРЅР°РєРѕРІС‹Рµ РїРѕРґСЂСЏРґ РёРґСѓС‰РёРµ СЃРїРµС† СЃРёРјРІРѕР»С‹
 	public void emailLoginMustNotContain2IdenticalConsecutiveSpecialChars() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -202,14 +202,14 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Недопустимый логин']/.."));
+		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ Р»РѕРіРёРЅ']/.."));
 		
 		Assert.assertNotNull(emailErrorElement);
 		Thread.sleep(1000);
 	}
 	
 	@Test
-	// Проверка логина, логин содержит латинские символы, спец символы (точку и нижнее подчеркивание), цифры
+	// РџСЂРѕРІРµСЂРєР° Р»РѕРіРёРЅР°, Р»РѕРіРёРЅ СЃРѕРґРµСЂР¶РёС‚ Р»Р°С‚РёРЅСЃРєРёРµ СЃРёРјРІРѕР»С‹, СЃРїРµС† СЃРёРјРІРѕР»С‹ (С‚РѕС‡РєСѓ Рё РЅРёР¶РЅРµРµ РїРѕРґС‡РµСЂРєРёРІР°РЅРёРµ), С†РёС„СЂС‹
 	public void emailLoginCorrect() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -220,13 +220,13 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		List<WebElement> emailErrorElements = driver.findElements(By.xpath(".//*[text()='Недопустимый логин']/.."));
+		List<WebElement> emailErrorElements = driver.findElements(By.xpath(".//*[text()='РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ Р»РѕРіРёРЅ']/.."));
 
 		Assert.assertTrue(emailErrorElements.size() == 0);
 	}
 	
 	@Test	
-	// Проверка логина, Проверка на занятость логина 
+	// РџСЂРѕРІРµСЂРєР° Р»РѕРіРёРЅР°, РџСЂРѕРІРµСЂРєР° РЅР° Р·Р°РЅСЏС‚РѕСЃС‚СЊ Р»РѕРіРёРЅР° 
 	public void emailLoginExist() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -237,14 +237,14 @@ public class RamblerTests {
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
 		newPasswordField.click();
 		
-		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='Почтовый ящик недоступен для регистрации. Попробуйте другой']/.."));
+		WebElement emailErrorElement = driver.findElement(By.xpath(".//*[text()='РџРѕС‡С‚РѕРІС‹Р№ СЏС‰РёРє РЅРµРґРѕСЃС‚СѓРїРµРЅ РґР»СЏ СЂРµРіРёСЃС‚СЂР°С†РёРё. РџРѕРїСЂРѕР±СѓР№С‚Рµ РґСЂСѓРіРѕР№']/.."));
 		
 		Assert.assertNotNull(emailErrorElement);
 		Thread.sleep(1000);
 	}
 		
 	@Test	
-	// Проверка пароля на пустое значение 
+	// РџСЂРѕРІРµСЂРєР° РїР°СЂРѕР»СЏ РЅР° РїСѓСЃС‚РѕРµ Р·РЅР°С‡РµРЅРёРµ 
 	public void passwordEmpty() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -255,14 +255,14 @@ public class RamblerTests {
 		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
 		confirmPasswordField.click();
 		
-		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РѕС‚ 8 РґРѕ 32 СЃРёРјРІРѕР»РѕРІ, РІРєР»СЋС‡Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ Р·Р°РіР»Р°РІРЅСѓСЋ Р»Р°С‚РёРЅСЃРєСѓСЋ Р±СѓРєРІСѓ, РѕРґРЅСѓ СЃС‚СЂРѕС‡РЅСѓСЋ Рё РѕРґРЅСѓ С†РёС„СЂСѓ']/.."));
 		
 		Assert.assertNotNull(newPasswordErrorElement);
 		Thread.sleep(1000);
 	}
 	
 	@Test	
-	// Длина пароля меньше на 1 символ минимально допустимой длины  
+	// Р”Р»РёРЅР° РїР°СЂРѕР»СЏ РјРµРЅСЊС€Рµ РЅР° 1 СЃРёРјРІРѕР» РјРёРЅРёРјР°Р»СЊРЅРѕ РґРѕРїСѓСЃС‚РёРјРѕР№ РґР»РёРЅС‹  
 	public void passwordLengthLessThanMinLength() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -273,14 +273,14 @@ public class RamblerTests {
 		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
 		confirmPasswordField.click();
 		
-		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РѕС‚ 8 РґРѕ 32 СЃРёРјРІРѕР»РѕРІ, РІРєР»СЋС‡Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ Р·Р°РіР»Р°РІРЅСѓСЋ Р»Р°С‚РёРЅСЃРєСѓСЋ Р±СѓРєРІСѓ, РѕРґРЅСѓ СЃС‚СЂРѕС‡РЅСѓСЋ Рё РѕРґРЅСѓ С†РёС„СЂСѓ']/.."));
 		
 		Assert.assertNotNull(newPasswordErrorElement);
 		Thread.sleep(1000);
 	}
 		
 	@Test	
-	// Длина пароля минимально допустимая
+	// Р”Р»РёРЅР° РїР°СЂРѕР»СЏ РјРёРЅРёРјР°Р»СЊРЅРѕ РґРѕРїСѓСЃС‚РёРјР°СЏ
 	public void passwordLengthMin() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -291,13 +291,13 @@ public class RamblerTests {
 		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
 		confirmPasswordField.click();
 		
-		List<WebElement> newPasswordErrorElements = driver.findElements(By.xpath(".//*[text()='Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		List<WebElement> newPasswordErrorElements = driver.findElements(By.xpath(".//*[text()='РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РѕС‚ 8 РґРѕ 32 СЃРёРјРІРѕР»РѕРІ, РІРєР»СЋС‡Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ Р·Р°РіР»Р°РІРЅСѓСЋ Р»Р°С‚РёРЅСЃРєСѓСЋ Р±СѓРєРІСѓ, РѕРґРЅСѓ СЃС‚СЂРѕС‡РЅСѓСЋ Рё РѕРґРЅСѓ С†РёС„СЂСѓ']/.."));
 		
 		Assert.assertTrue(newPasswordErrorElements.size() == 0);
 	}
 	
 	@Test	
-	// Длина пароля максимально допустимая
+	// Р”Р»РёРЅР° РїР°СЂРѕР»СЏ РјР°РєСЃРёРјР°Р»СЊРЅРѕ РґРѕРїСѓСЃС‚РёРјР°СЏ
 	public void passwordLengthMax() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -308,13 +308,13 @@ public class RamblerTests {
 		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
 		confirmPasswordField.click();
 		
-		List<WebElement> newPasswordErrorElements = driver.findElements(By.xpath(".//*[text()='Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		List<WebElement> newPasswordErrorElements = driver.findElements(By.xpath(".//*[text()='РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РѕС‚ 8 РґРѕ 32 СЃРёРјРІРѕР»РѕРІ, РІРєР»СЋС‡Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ Р·Р°РіР»Р°РІРЅСѓСЋ Р»Р°С‚РёРЅСЃРєСѓСЋ Р±СѓРєРІСѓ, РѕРґРЅСѓ СЃС‚СЂРѕС‡РЅСѓСЋ Рё РѕРґРЅСѓ С†РёС„СЂСѓ']/.."));
 		
 		Assert.assertTrue(newPasswordErrorElements.size() == 0);
 	}
 	
 	@Test	
-	// Длина пароля больше на 1 символ максимально допустимой длины
+	// Р”Р»РёРЅР° РїР°СЂРѕР»СЏ Р±РѕР»СЊС€Рµ РЅР° 1 СЃРёРјРІРѕР» РјР°РєСЃРёРјР°Р»СЊРЅРѕ РґРѕРїСѓСЃС‚РёРјРѕР№ РґР»РёРЅС‹
 	public void passwordLengthMoreThanMaximumLength() throws Exception {
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
 		
@@ -325,11 +325,9 @@ public class RamblerTests {
 		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
 		confirmPasswordField.click();
 		
-		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РѕС‚ 8 РґРѕ 32 СЃРёРјРІРѕР»РѕРІ, РІРєР»СЋС‡Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ Р·Р°РіР»Р°РІРЅСѓСЋ Р»Р°С‚РёРЅСЃРєСѓСЋ Р±СѓРєРІСѓ, РѕРґРЅСѓ СЃС‚СЂРѕС‡РЅСѓСЋ Рё РѕРґРЅСѓ С†РёС„СЂСѓ']/.."));
 		
 		Assert.assertNotNull(newPasswordErrorElement);
 		Thread.sleep(1000);
 	}
-	
-	
 }
