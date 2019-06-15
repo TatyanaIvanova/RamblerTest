@@ -383,22 +383,103 @@ public class RamblerTests {
 	}
 	
 	@Test	
-	// Проверка на сложность пароля 
-	public void passwordStrengthIndicator() throws Exception
+	// Пароль содержит одну русскую букву 
+	public void passwordContainOneCyrillicChar() throws Exception
 	{
 		openRegistrationPage();
 		
 		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
-		newPasswordField.sendKeys("Qw24Kdh2Qw24Kdh2Qw24Kdh2Qw24Kdh12");
+		newPasswordField.sendKeys("Д");
 		sleep();
 		
 		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
 		confirmPasswordField.click();
 		sleep();
 		
-		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Вы вводите русские буквы']/.."));
 		
 		Assert.assertNotNull(newPasswordErrorElement);
 		sleep();
 	}
+	
+	@Test
+	// Пароль содержит один пробел
+	public void passwordContainOneSpace() throws Exception
+	{
+		openRegistrationPage();
+		
+		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
+		newPasswordField.sendKeys(" ");
+		sleep();
+		
+		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
+		confirmPasswordField.click();
+		sleep();
+		
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()= 'Символ \" \" не поддерживается. Можно использовать символы ! @ $ % ^ & * ( ) _ - +']/.."));
+		
+		Assert.assertNotNull(newPasswordErrorElement);
+		sleep();
+	}
+	
+	@Test
+	// Проверка на отсутствие строчной буквы 
+	public void passwordLackLowercaseChar() throws Exception
+	{
+		openRegistrationPage();
+		
+		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
+		newPasswordField.sendKeys("1234FDGH");
+		sleep();
+		
+		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
+		confirmPasswordField.click();
+		sleep();
+		
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()= 'Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		
+		Assert.assertNotNull(newPasswordErrorElement);
+		sleep();
+	}
+	
+	@Test
+	// Проверка на отсутствие заглавной буквы 
+	public void passwordLackOfCapitalChar() throws Exception
+	{
+		openRegistrationPage();
+		
+		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
+		newPasswordField.sendKeys("nmkl7657");
+		sleep();
+		
+		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
+		confirmPasswordField.click();
+		sleep();
+		
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()= 'Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		
+		Assert.assertNotNull(newPasswordErrorElement);
+		sleep();
+	}
+	
+	@Test
+	// Проверка на отсутствие цифры
+	public void passwordLackOfNumber() throws Exception
+	{
+		openRegistrationPage();
+		
+		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
+		newPasswordField.sendKeys("MDSAtreg");
+		sleep();
+		
+		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
+		confirmPasswordField.click();
+		sleep();
+		
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()= 'Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		
+		Assert.assertNotNull(newPasswordErrorElement);
+		sleep();
+	}
+	
 }
