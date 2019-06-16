@@ -33,13 +33,13 @@ public class RamblerTests {
 	private void openRegistrationPage() throws Exception
 	{
 		driver.get("https://id.rambler.ru/login-20/mail-registration");
-		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
 		
-		WebDriverWait wait = new WebDriverWait(driver, 30, 1000);
+		WebDriverWait wait = new WebDriverWait(driver, 10, 1000);
 		// Дожидаемся чтобы страница отрисовывалась
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//*[text()='Регистрация Рамблер/почты']/..")));
 		// если не подождать то тесты проходят через раз
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 	}
 	
 	private void sleep() throws Exception
@@ -416,7 +416,7 @@ public class RamblerTests {
 		confirmPasswordField.click();
 		sleep();
 		
-		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()= 'Символ \" \" не поддерживается. Можно использовать символы ! @ $ % ^ & * ( ) _ - +']/.."));
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Символ \" \" не поддерживается. Можно использовать символы ! @ $ % ^ & * ( ) _ - +']/.."));
 		
 		Assert.assertNotNull(newPasswordErrorElement);
 		sleep();
@@ -436,7 +436,7 @@ public class RamblerTests {
 		confirmPasswordField.click();
 		sleep();
 		
-		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()= 'Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
 		
 		Assert.assertNotNull(newPasswordErrorElement);
 		sleep();
@@ -456,7 +456,7 @@ public class RamblerTests {
 		confirmPasswordField.click();
 		sleep();
 		
-		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()= 'Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
 		
 		Assert.assertNotNull(newPasswordErrorElement);
 		sleep();
@@ -476,10 +476,49 @@ public class RamblerTests {
 		confirmPasswordField.click();
 		sleep();
 		
-		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()= 'Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Пароль должен содержать от 8 до 32 символов, включать хотя бы одну заглавную латинскую букву, одну строчную и одну цифру']/.."));
 		
 		Assert.assertNotNull(newPasswordErrorElement);
 		sleep();
 	}
 	
+	@Test
+	// Проверка, что пароль средней сложности 
+	public void passwordOfMediumDifficulty() throws Exception
+	{
+		openRegistrationPage();
+		
+		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
+		newPasswordField.sendKeys("1234w7QeW");
+		sleep();
+		
+		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
+		confirmPasswordField.click();
+		sleep();
+		
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Пароль средней сложности']/.."));
+		
+		Assert.assertNotNull(newPasswordErrorElement);
+		sleep();
+	}
+	
+	@Test
+	// Проверка, что пароль сложный
+	public void passwordIsComplicated() throws Exception
+	{
+		openRegistrationPage();
+		
+		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
+		newPasswordField.sendKeys("1234w7Q!");
+		sleep();
+		
+		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
+		confirmPasswordField.click();
+		sleep();
+		
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Сложный пароль']/.."));
+		
+		Assert.assertNotNull(newPasswordErrorElement);
+		sleep();
+	}
 }
