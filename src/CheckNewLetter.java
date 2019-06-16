@@ -58,18 +58,18 @@ public class CheckNewLetter {
 		sleep();
 		
 		WebDriverWait userNameWait = new WebDriverWait(driver, 10, 1000);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//h1[text()='Лось Тюленев']/..")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(".//h1[text()='Р›РѕСЃСЊ РўСЋР»РµРЅРµРІ']/..")));
 		sleep();
 		
 		List<WebElement> emailCounterElements = driver.findElements(By.xpath("//a[@data-cerber-topline='projects::mail']/span"));
 		
 		if (emailCounterElements.size() == 0)
 		{
-		    System.out.println("У вас нет новых сообщений!");
+		    System.out.println("РЈ РІР°СЃ РЅРµС‚ РЅРѕРІС‹С… СЃРѕРѕР±С‰РµРЅРёР№!");
 		}
 		else
 		{
-		    System.out.println("У вас есть новые сообщения!");
+		    System.out.println("РЈ РІР°СЃ РµСЃС‚СЊ РЅРѕРІС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ!");
 		}
 	}
 	
