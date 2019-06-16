@@ -521,4 +521,51 @@ public class RamblerTests {
 		Assert.assertNotNull(newPasswordErrorElement);
 		sleep();
 	}
+	
+	@Test
+	// Пароль и Повтор пароля не совпадают
+	public void passwordAndRepeatPasswordDoNotMatch() throws Exception
+	{
+		openRegistrationPage();
+		
+		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
+		newPasswordField.sendKeys("qwerty123Q");
+		sleep();
+		
+		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
+		confirmPasswordField.sendKeys("qwerty123Q6");
+		sleep();
+		
+		WebElement loginField = driver.findElement(By.id("login"));
+		loginField.click();
+		sleep();
+		
+		WebElement newPasswordErrorElement = driver.findElement(By.xpath(".//*[text()='Пароли не совпадают']/.."));
+		
+		Assert.assertNotNull(newPasswordErrorElement);
+		sleep();
+	}
+	
+	@Test
+	// Пароль и Повтор пароля совпадают
+	public void passwordAndRepeatPasswordDoMatch() throws Exception
+	{
+		openRegistrationPage();
+		
+		WebElement newPasswordField = driver.findElement(By.id("newPassword"));
+		newPasswordField.sendKeys("qwerty123Q");
+		sleep();
+		
+		WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
+		confirmPasswordField.sendKeys("qwerty123Q");
+		sleep();
+		
+		WebElement loginField = driver.findElement(By.id("login"));
+		loginField.click();
+		sleep();
+		
+		List<WebElement> passwordDoNotMatchElements = driver.findElements(By.xpath(".//*[text()='Пароли не совпадают']/.."));
+		Assert.assertTrue(passwordDoNotMatchElements.size() == 0);
+		sleep();
+	}
 }
